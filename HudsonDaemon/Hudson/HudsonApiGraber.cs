@@ -1,16 +1,16 @@
 ﻿using X3.Spider;
+using System.Collections.Generic;
 
-namespace HudsonDaemon.Hudson
+namespace HudsonIndicator.HudsonDaemon.Hudson
 {
-    using System.Collections.Generic;
-
     public class HudsonApiGraber
     {
         public static JobDetail GetJobDetail(string url)
         {
             var url2 = new HudsonUrl(url);
             var spider = new Spider();
-            return JobDetail.Parse(spider.Grab(url2.GetJSONAPI()));
+            var jobDetailInJson = spider.Grab(url2.GetJSONAPI());
+            return JobDetail.Parse(jobDetailInJson);
         }
 
         public static IEnumerable<JobItem> GetJobs(IEnumerable<HudsonUrl> hudsonUrls)

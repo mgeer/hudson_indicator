@@ -1,9 +1,9 @@
-﻿namespace HudsonDaemon.Properties
-{
-    using System.CodeDom.Compiler;
-    using System.Configuration;
-    using System.Runtime.CompilerServices;
+﻿using System.CodeDom.Compiler;
+using System.Configuration;
+using System.Runtime.CompilerServices;
 
+namespace HudsonIndicator.HudsonDaemon.Properties
+{
     [GeneratedCode("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0"), CompilerGenerated]
     internal sealed class Settings : ApplicationSettingsBase
     {

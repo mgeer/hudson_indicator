@@ -1,4 +1,4 @@
-﻿namespace HudsonDaemon.Hudson
+﻿namespace HudsonIndicator.HudsonDaemon.Hudson
 {
     public class HudsonUrl
     {

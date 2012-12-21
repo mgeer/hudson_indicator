@@ -1,11 +1,10 @@
-﻿using HudsonDaemon.Hudson;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using HudsonIndicator.HudsonDaemon.Hudson;
 
-namespace HudsonDaemon.Daemons
+namespace HudsonIndicator.HudsonDaemon.Daemons
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-
     internal class Daemon
     {
         private static void ExecuteCmd(Status status)
@@ -26,7 +25,7 @@ namespace HudsonDaemon.Daemons
 
         public void UpdateStatus(IEnumerable<JobDetail> jobDetails)
         {
-            Status status = new StatusCalculator().Calculate(jobDetails);
+            var status = new StatusCalculator().Calculate(jobDetails);
             try
             {
                 ExecuteCmd(status);

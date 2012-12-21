@@ -1,9 +1,8 @@
-﻿namespace HudsonDaemon.UI
-{
-    using System;
-    using System.Linq;
-    using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 
+namespace HudsonIndicator.HudsonDaemon.UI
+{
     internal class SortableListView
     {
         private readonly ListView listView;

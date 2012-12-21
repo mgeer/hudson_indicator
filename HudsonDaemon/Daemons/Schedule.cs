@@ -1,23 +1,22 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
+using System.Threading;
+using HudsonIndicator.HudsonDaemon.Hudson;
 
-namespace HudsonDaemon.Daemons
+namespace HudsonIndicator.HudsonDaemon.Daemons
 {
-    using Hudson;
-    using System.Collections.Generic;
-    using System.Threading;
-
     internal class Schedule
     {
-        private const int INTERVAL_IN_SECOND = 30;
+        private const int IntervalInSecond = 30;
         private Timer timer;
 
         public void Refresh(IEnumerable<JobItem> items)
         {
-            if (this.timer != null)
+            if (timer != null)
             {
-                this.timer.Dispose();
+                timer.Dispose();
             }
-            this.timer = new Timer(new TimerCallback(Schedule.UpdateDaemonStatus), items, 0, 0x7530);
+            timer = new Timer(UpdateDaemonStatus, items, 0, IntervalInSecond);
         }
 
         private static void UpdateDaemonStatus(object state)

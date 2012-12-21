@@ -1,7 +1,7 @@
-﻿namespace HudsonDaemon.Hudson
-{
-    using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
+namespace HudsonIndicator.HudsonDaemon.Hudson
+{
     internal static class UrlValidator
     {
         private static readonly Regex UrlPattern = new Regex("^http://.+$", RegexOptions.Compiled);

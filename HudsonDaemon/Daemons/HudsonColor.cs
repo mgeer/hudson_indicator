@@ -1,4 +1,4 @@
-﻿namespace HudsonDaemon.Daemons
+﻿namespace HudsonIndicator.HudsonDaemon.Daemons
 {
     public class HudsonColor
     {
@@ -6,6 +6,7 @@
         public const string BlueAnime = "blue_anime";
         public const string Red = "red";
         public const string Yellow = "yellow";
+        public const string Anime = "anime";
     }
 }
 

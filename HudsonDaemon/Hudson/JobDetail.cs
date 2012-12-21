@@ -1,10 +1,10 @@
-﻿namespace HudsonDaemon.Hudson
-{
-    using System.IO;
-    using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
+﻿using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
+namespace HudsonIndicator.HudsonDaemon.Hudson
+{
     [DataContract]
     public class JobDetail
     {

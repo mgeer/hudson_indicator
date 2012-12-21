@@ -1,10 +1,8 @@
-﻿namespace HudsonDaemon.Persistance
-{
-    using HudsonDaemon.Hudson;
-    using System;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using HudsonIndicator.HudsonDaemon.Hudson;
 
+namespace HudsonIndicator.HudsonDaemon.Persistance
+{
     [DataContract]
     public class JobLine
     {

@@ -1,13 +1,11 @@
-﻿namespace HudsonDaemon.Properties
-{
-    using System;
-    using System.CodeDom.Compiler;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Resources;
-    using System.Runtime.CompilerServices;
+﻿using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 
+namespace HudsonIndicator.HudsonDaemon.Properties
+{
     [CompilerGenerated, GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"), DebuggerNonUserCode]
     internal class Resources
     {

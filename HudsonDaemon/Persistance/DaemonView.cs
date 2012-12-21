@@ -1,12 +1,10 @@
-﻿namespace HudsonDaemon.Persistance
-{
-    using System;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
+﻿using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
+namespace HudsonIndicator.HudsonDaemon.Persistance
+{
     [DataContract]
     public class DaemonView
     {

@@ -1,7 +1,5 @@
-﻿namespace HudsonDaemon.Daemons
+﻿namespace HudsonIndicator.HudsonDaemon.Daemons
 {
-    using System;
-
     public enum Status
     {
         BlueAnime = 4,

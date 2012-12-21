@@ -1,12 +1,11 @@
-﻿namespace HudsonDaemon.Persistance
-{
-    using System;
-    using System.IO;
-    using System.Text;
+﻿using System.IO;
+using System.Text;
 
+namespace HudsonIndicator.HudsonDaemon.Persistance
+{
     public class Repository
     {
-        private const string REPO_FILE = "repo.hd";
+        private const string RepoFile = "repo.hd";
 
         public string Load()
         {
@@ -14,9 +13,9 @@
             {
                 return string.Empty;
             }
-            using (StreamReader reader = new StreamReader("repo.hd", Encoding.UTF8))
+            using (var reader = new StreamReader(RepoFile, Encoding.UTF8))
             {
-                string str = reader.ReadToEnd();
+                var str = reader.ReadToEnd();
                 reader.Close();
                 return str;
             }
@@ -24,7 +23,7 @@
 
         public void Save(string viewAsJson)
         {
-            using (StreamWriter writer = new StreamWriter("repo.hd", false, Encoding.UTF8))
+            using (var writer = new StreamWriter(RepoFile, false, Encoding.UTF8))
             {
                 writer.Write(viewAsJson);
                 writer.Flush();

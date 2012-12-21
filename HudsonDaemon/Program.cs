@@ -1,9 +1,9 @@
-﻿namespace HudsonDaemon
-{
-    using UI;
-    using System;
-    using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using HudsonIndicator.HudsonDaemon.UI;
 
+namespace HudsonIndicator.HudsonDaemon
+{
     internal static class Program
     {
         [STAThread]
