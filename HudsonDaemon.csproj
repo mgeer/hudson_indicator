@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{530D240B-1673-440D-BA26-C00B0B65F186}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>HudsonDaemon</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="QS.Spider">
+      <HintPath>HudsonDaemon\lib\QS.Spider.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="HudsonDaemon\UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HudsonDaemon\Daemons\HudsonColor.cs" />
+    <Compile Include="HudsonDaemon\Daemons\StatusCalculator.cs" />
+    <Compile Include="HudsonDaemon\Program.cs" />
+    <Compile Include="HudsonDaemon\Persistance\Repository.cs" />
+    <Compile Include="HudsonDaemon\Hudson\JobDetail.cs" />
+    <Compile Include="HudsonDaemon\UI\ListViewSorter.cs" />
+    <Compile Include="HudsonDaemon\UI\SortableListView.cs" />
+    <Compile Include="HudsonDaemon\Hudson\HudsonApiGraber.cs" />
+    <Compile Include="HudsonDaemon\UI\CheckAllable.cs" />
+    <Compile Include="HudsonDaemon\Hudson\JobItems.cs" />
+    <Compile Include="HudsonDaemon\Hudson\UrlValidator.cs" />
+    <Compile Include="HudsonDaemon\Daemons\Status.cs" />
+    <Compile Include="HudsonDaemon\Daemons\Schedule.cs" />
+    <Compile Include="HudsonDaemon\Daemons\Daemon.cs" />
+    <Compile Include="HudsonDaemon\Properties\Resources.cs" />
+    <Compile Include="HudsonDaemon\Hudson\JobItem.cs" />
+    <Compile Include="HudsonDaemon\Properties\Settings.cs" />
+    <Compile Include="HudsonDaemon\Persistance\DaemonView.cs" />
+    <Compile Include="HudsonDaemon\Persistance\JobLine.cs" />
+    <Compile Include="HudsonDaemon\Hudson\HudsonUrl.cs" />
+    <EmbeddedResource Include="HudsonDaemon.Properties.Resources.resources" />
+    <EmbeddedResource Include="HudsonDaemon.UI.MainForm.resources" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+</Project>
