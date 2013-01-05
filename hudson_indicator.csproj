@@ -34,9 +34,19 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="QS.Spider">
-      <HintPath>HudsonDaemon\lib\QS.Spider.dll</HintPath>
-    </Reference>
+    <Compile Include="HudsonDaemon\UI\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HudsonDaemon\UI\UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="HudsonDaemon\UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HudsonDaemon\UI\UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -44,6 +54,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="HudsonDaemon\Authentications\HudsonUser.cs" />
     <Compile Include="HudsonDaemon\UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,14 +72,17 @@
     <Compile Include="HudsonDaemon\Daemons\Status.cs" />
     <Compile Include="HudsonDaemon\Daemons\Schedule.cs" />
     <Compile Include="HudsonDaemon\Daemons\Daemon.cs" />
-    <Compile Include="HudsonDaemon\Properties\Resources.cs" />
     <Compile Include="HudsonDaemon\Hudson\JobItem.cs" />
     <Compile Include="HudsonDaemon\Properties\Settings.cs" />
     <Compile Include="HudsonDaemon\Persistance\DaemonView.cs" />
     <Compile Include="HudsonDaemon\Persistance\JobLine.cs" />
     <Compile Include="HudsonDaemon\Hudson\HudsonUrl.cs" />
-    <EmbeddedResource Include="HudsonDaemon.Properties.Resources.resources" />
-    <EmbeddedResource Include="HudsonDaemon.UI.MainForm.resources" />
     <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="QS.Spider\QS.Spider.csproj">
+      <Project>{A263AE43-884A-4D85-A0B7-8100C604B534}</Project>
+      <Name>QS.Spider</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

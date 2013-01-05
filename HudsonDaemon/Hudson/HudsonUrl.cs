@@ -6,7 +6,7 @@
 
         public HudsonUrl(string url)
         {
-            this.url = url;
+            this.url = url.TrimEnd("/".ToCharArray());
         }
 
         public string GetJSONAPI()

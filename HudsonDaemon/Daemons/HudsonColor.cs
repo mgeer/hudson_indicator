@@ -7,6 +7,8 @@
         public const string Red = "red";
         public const string Yellow = "yellow";
         public const string Anime = "anime";
+
+        public const string YellowAnime = "yellow_anime";
     }
 }
 

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hudson_indicator", "hudson_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hudson_indicator_test", "test\hudson_indicator_test\hudson_indicator_test.csproj", "{820A21B9-8178-4152-9D1B-A2D316021DD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QS.Spider", "QS.Spider\QS.Spider.csproj", "{A263AE43-884A-4D85-A0B7-8100C604B534}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{820A21B9-8178-4152-9D1B-A2D316021DD3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{820A21B9-8178-4152-9D1B-A2D316021DD3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{820A21B9-8178-4152-9D1B-A2D316021DD3}.Release|x86.ActiveCfg = Release|Any CPU
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Debug|x86.ActiveCfg = Debug|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Debug|x86.Build.0 = Debug|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Release|Any CPU.ActiveCfg = Release|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Release|x86.ActiveCfg = Release|x86
+		{A263AE43-884A-4D85-A0B7-8100C604B534}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

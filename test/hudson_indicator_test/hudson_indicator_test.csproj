@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Authentications\AuthenticationTest.cs" />
     <Compile Include="BytesToText.cs" />
     <Compile Include="JobDetailTest.cs" />
     <Compile Include="JobItemsTest.cs" />
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\..\hudson_indicator.csproj">
       <Project>{530D240B-1673-440D-BA26-C00B0B65F186}</Project>
       <Name>hudson_indicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QS.Spider\QS.Spider.csproj">
+      <Project>{A263AE43-884A-4D85-A0B7-8100C604B534}</Project>
+      <Name>QS.Spider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

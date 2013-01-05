@@ -13,30 +13,31 @@ namespace HudsonIndicator.HudsonDaemon.UI
 {
     public class MainForm : Form
     {
-        private const int NameIndex = 1;
-        private const int UrlIndex = 2;
-        private readonly Schedule daemonSchedule = new Schedule();
+//        private const int NameIndex = 1;
+//        private const int UrlIndex = 2;
         private Button btnShowJobs;
         private Button btnWatch;
         private IContainer components;
         private ListView jobsView;
         private Label label1;
-        private NotifyIcon notifyIcon;
         private TextBox urls;
+        private Button loginButton;
 
+        private HudsonApiGraber hudsonApiGraber = new HudsonApiGraber(new CommonSpider());
+        private readonly Schedule daemonSchedule = new Schedule();
         public MainForm()
         {
             InitializeComponent();
             InitJobsView();
             LoadViewAsJsonIfExists();
-            Hidable();
+//            Hidable();
         }
 
         private void BtnShowJobs_Click(object sender, EventArgs e)
         {
             try
             {
-                IEnumerable<JobItem> jobs = HudsonApiGraber.GetJobs(TryGetHudsonUrls());
+                var jobs = hudsonApiGraber.GetJobs(TryGetHudsonUrls());
                 ShowJobs(jobs);
             }
             catch (Exception exception)
@@ -47,11 +48,12 @@ namespace HudsonIndicator.HudsonDaemon.UI
 
         private void BtnWatch_Click(object sender, EventArgs e)
         {
-            IEnumerable<JobItem> items = from item in GetSelectedItems(jobsView.Items).ToArray()
+            var items = from item in GetSelectedItems(jobsView.Items).ToArray()
                                          select new JobItem {name = item.SubItems[1].Text, url = item.SubItems[2].Text};
-            daemonSchedule.Refresh(items);
+            daemonSchedule.Refresh(items, hudsonApiGraber);
             Persist();
         }
+
 
         private static ColumnHeader CreateColumn(string text, int width)
         {
@@ -104,73 +106,95 @@ namespace HudsonIndicator.HudsonDaemon.UI
 
         private void Hidable()
         {
-            base.SizeChanged += MainForm_SizeChanged;
-            notifyIcon.Click += notifyIcon_Click;
+            SizeChanged += MainForm_SizeChanged;
+//            notifyIcon.Click += notifyIcon_Click;
         }
 
         private void InitializeComponent()
         {
-            components = new Container();
-            var manager = new ComponentResourceManager(typeof (MainForm));
-            label1 = new Label();
-            urls = new TextBox();
-            btnShowJobs = new Button();
-            jobsView = new ListView();
-            btnWatch = new Button();
-            notifyIcon = new NotifyIcon(components);
-            SuspendLayout();
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(0xdd, 12);
-            label1.TabIndex = 0;
-            label1.Text = "输入要监控的Hudson地址（一行一个）：";
-            urls.Location = new Point(14, 0x18);
-            urls.Multiline = true;
-            urls.Name = "urls";
-            urls.Size = new Size(0x321, 0x3a);
-            urls.TabIndex = 1;
-            urls.Text = "http://db-spi-hudson0.db01.baidu.com:8235/hudson/view/lc/";
-            btnShowJobs.Location = new Point(740, 0x58);
-            btnShowJobs.Name = "btnShowJobs";
-            btnShowJobs.Size = new Size(0x4b, 0x17);
-            btnShowJobs.TabIndex = 2;
-            btnShowJobs.Text = "显示Jobs";
-            btnShowJobs.UseVisualStyleBackColor = true;
-            btnShowJobs.Click += BtnShowJobs_Click;
-            jobsView.CheckBoxes = true;
-            jobsView.FullRowSelect = true;
-            jobsView.GridLines = true;
-            jobsView.Location = new Point(14, 0x75);
-            jobsView.Name = "jobsView";
-            jobsView.Size = new Size(0x321, 0x129);
-            jobsView.TabIndex = 3;
-            jobsView.UseCompatibleStateImageBehavior = false;
-            jobsView.View = View.Details;
-            btnWatch.Location = new Point(740, 420);
-            btnWatch.Name = "btnWatch";
-            btnWatch.Size = new Size(0x4b, 0x17);
-            btnWatch.TabIndex = 2;
-            btnWatch.Text = "监控";
-            btnWatch.UseVisualStyleBackColor = true;
-            btnWatch.Click += BtnWatch_Click;
-            notifyIcon.Icon = (Icon) manager.GetObject("notifyIcon.Icon");
-            notifyIcon.Text = "HudsonDaemon";
-            AutoScaleDimensions = new SizeF(6f, 12f);
-            AutoScaleMode = AutoScaleMode.Font;
-            base.ClientSize = new Size(0x33d, 0x1c7);
-            base.Controls.Add(jobsView);
-            base.Controls.Add(btnWatch);
-            base.Controls.Add(btnShowJobs);
-            base.Controls.Add(urls);
-            base.Controls.Add(label1);
-            base.FormBorderStyle = FormBorderStyle.FixedSingle;
-            base.MaximizeBox = false;
-            base.Name = "MainForm";
-            base.ShowInTaskbar = false;
-            Text = "神灯";
-            base.ResumeLayout(false);
-            base.PerformLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.urls = new System.Windows.Forms.TextBox();
+            this.btnShowJobs = new System.Windows.Forms.Button();
+            this.jobsView = new System.Windows.Forms.ListView();
+            this.btnWatch = new System.Windows.Forms.Button();
+            this.loginButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(221, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "输入要监控的Hudson地址（一行一个）：";
+            // 
+            // urls
+            // 
+            this.urls.Location = new System.Drawing.Point(14, 36);
+            this.urls.Multiline = true;
+            this.urls.Name = "urls";
+            this.urls.Size = new System.Drawing.Size(801, 58);
+            this.urls.TabIndex = 1;
+            this.urls.Text = "http://db-spi-hudson0.db01.baidu.com:8235/hudson/view/lc/";
+            // 
+            // btnShowJobs
+            // 
+            this.btnShowJobs.Location = new System.Drawing.Point(740, 100);
+            this.btnShowJobs.Name = "btnShowJobs";
+            this.btnShowJobs.Size = new System.Drawing.Size(75, 23);
+            this.btnShowJobs.TabIndex = 2;
+            this.btnShowJobs.Text = "显示Jobs";
+            this.btnShowJobs.UseVisualStyleBackColor = true;
+            this.btnShowJobs.Click += new System.EventHandler(this.BtnShowJobs_Click);
+            // 
+            // jobsView
+            // 
+            this.jobsView.CheckBoxes = true;
+            this.jobsView.FullRowSelect = true;
+            this.jobsView.GridLines = true;
+            this.jobsView.Location = new System.Drawing.Point(14, 129);
+            this.jobsView.Name = "jobsView";
+            this.jobsView.Size = new System.Drawing.Size(801, 297);
+            this.jobsView.TabIndex = 3;
+            this.jobsView.UseCompatibleStateImageBehavior = false;
+            this.jobsView.View = System.Windows.Forms.View.Details;
+            // 
+            // btnWatch
+            // 
+            this.btnWatch.Location = new System.Drawing.Point(740, 432);
+            this.btnWatch.Name = "btnWatch";
+            this.btnWatch.Size = new System.Drawing.Size(75, 23);
+            this.btnWatch.TabIndex = 2;
+            this.btnWatch.Text = "监控";
+            this.btnWatch.UseVisualStyleBackColor = true;
+            this.btnWatch.Click += new System.EventHandler(this.BtnWatch_Click);
+            // 
+            // loginButton
+            // 
+            this.loginButton.Location = new System.Drawing.Point(554, 8);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(261, 23);
+            this.loginButton.TabIndex = 4;
+            this.loginButton.Text = "啊！我需要登录！！";
+            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // MainForm
+            // 
+            this.ClientSize = new System.Drawing.Size(831, 473);
+            this.Controls.Add(this.loginButton);
+            this.Controls.Add(this.jobsView);
+            this.Controls.Add(this.btnWatch);
+            this.Controls.Add(this.btnShowJobs);
+            this.Controls.Add(this.urls);
+            this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.Name = "MainForm";
+            this.Text = "神灯";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private void InitJobsView()
@@ -230,7 +254,7 @@ namespace HudsonIndicator.HudsonDaemon.UI
             if (WindowState == FormWindowState.Minimized)
             {
                 Hide();
-                notifyIcon.Visible = true;
+//                notifyIcon.Visible = true;
             }
         }
 
@@ -238,13 +262,13 @@ namespace HudsonIndicator.HudsonDaemon.UI
         {
             Visible = true;
             WindowState = FormWindowState.Normal;
-            notifyIcon.Visible = false;
+//            notifyIcon.Visible = false;
         }
 
         private void Persist()
         {
             string[] lines = urls.Lines;
-            IEnumerable<JobLine> source = JobViewToItemList();
+            var source = JobViewToItemList();
             var view = new DaemonView
                 {
                     Urls = lines,
@@ -255,15 +279,51 @@ namespace HudsonIndicator.HudsonDaemon.UI
 
         private void ShowJobs(IEnumerable<JobItem> jobs)
         {
-            ListViewItem[] items = jobs.Select(CreateListViewItem).ToArray();
+            jobsView.Items.Clear();
+            var items = jobs.Select(CreateListViewItem).ToArray();
             jobsView.Items.AddRange(items);
         }
 
         private IEnumerable<HudsonUrl> TryGetHudsonUrls()
         {
-            string[] lines = urls.Lines;
+            var lines = urls.Lines;
             EnsureUrlsAreValid(lines);
             return (from url in lines select new HudsonUrl(url));
+        }
+
+        private bool credendialMode;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (credendialMode)
+            {
+                Logout();
+            }
+            else
+            {
+                Login();
+            }
+        }
+
+        private void Login()
+        {
+            var userForm = new UserForm();
+            var dialogResult = userForm.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                var userName = userForm.userName.Text;
+                var password = userForm.password.Text;
+                var credentialSpider = new CredentialSpider(userName, password);
+                hudsonApiGraber = new HudsonApiGraber(credentialSpider);
+                loginButton.Text = string.Format("hi, 我是 {0}, {1}", userName, "点击注销！");
+                credendialMode = true;
+            }
+        }
+
+        private void Logout()
+        {
+            loginButton.Text = "啊！我需要登录！！";
+            hudsonApiGraber = new HudsonApiGraber(new CommonSpider());
+            credendialMode = false;
         }
     }
 }
