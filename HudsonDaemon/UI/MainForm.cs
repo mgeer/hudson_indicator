@@ -24,12 +24,14 @@ namespace HudsonIndicator.HudsonDaemon.UI
         private Button loginButton;
 
         private HudsonApiGraber hudsonApiGraber = new HudsonApiGraber(new CommonSpider());
-        private readonly Schedule daemonSchedule = new Schedule();
+        private TextBox textLog;
+        private readonly Schedule daemonSchedule;
         public MainForm()
         {
             InitializeComponent();
             InitJobsView();
             LoadViewAsJsonIfExists();
+            daemonSchedule = new Schedule(new TextBoxLogger(textLog));
 //            Hidable();
         }
 
@@ -118,6 +120,7 @@ namespace HudsonIndicator.HudsonDaemon.UI
             this.jobsView = new System.Windows.Forms.ListView();
             this.btnWatch = new System.Windows.Forms.Button();
             this.loginButton = new System.Windows.Forms.Button();
+            this.textLog = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -180,9 +183,19 @@ namespace HudsonIndicator.HudsonDaemon.UI
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textLog
+            // 
+            this.textLog.Location = new System.Drawing.Point(12, 461);
+            this.textLog.Multiline = true;
+            this.textLog.Name = "textLog";
+            this.textLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textLog.Size = new System.Drawing.Size(801, 181);
+            this.textLog.TabIndex = 5;
+            // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(831, 473);
+            this.ClientSize = new System.Drawing.Size(831, 654);
+            this.Controls.Add(this.textLog);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.jobsView);
             this.Controls.Add(this.btnWatch);

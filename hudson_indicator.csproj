@@ -34,6 +34,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="HudsonDaemon\Log\ILogger.cs" />
+    <Compile Include="HudsonDaemon\UI\TextBoxLogger.cs" />
     <Compile Include="HudsonDaemon\UI\UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
